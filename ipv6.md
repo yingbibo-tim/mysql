@@ -42,5 +42,19 @@ ping ping6 -c 5 ipv6.google.com 能ping通说明配置OK了
   重复step4
  
  </code>
+ 
+ 如果阿里云内ping外能ping通，外ping内ping不通的话,在centos7的防火墙增加规则
+ <p>
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -p 41 -j ACCEPT
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 2 -p 41 -j ACCEPT
+
+查询规则是否生效
+
+firewall-cmd --direct --get-all-rules
+
+</p>
+
+注：阿里云跟腾讯云的安全策略可能不同 阿里云需要再在云控制台去对相应安全策略对ipv6转发的地址进行安全准入
   
   
